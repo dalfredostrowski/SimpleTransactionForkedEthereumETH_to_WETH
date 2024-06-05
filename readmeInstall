@@ -27,7 +27,7 @@
 
 
 // from second terminal ( console ) 
-
+const [deployer] = await ethers.getSigners();
 > const signers = await ethers.getSigners();
 undefined
 > const bal = await ethers.provider.getBalance(signers[0])
