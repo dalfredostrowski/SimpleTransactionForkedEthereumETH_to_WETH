@@ -1,0 +1,72 @@
+
+    sudo apt-get update
+    sudo apt-get install -y ca-certificates curl gnupg
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    NODE_MAJOR=20
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    sudo apt-get update
+    sudo apt-get install nodejs -y
+    npm install web3
+    npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai
+    npm i @openzeppelin/contracts@4.5.0
+    mkdir forkingDemo
+    cd forkingDemo/
+    ls
+    npx hardhat init
+    ls
+    vi hardhat.config.js
+    cd contracts
+    vi Lock.sol    // change solidity to .18
+    vi check.sol   // bring in contents from github
+    npx hardhat node --hostname localhost   // start up the node
+    npx hardhat console --network localhost    // in second terminal start the console to build transaction.
+
+
+
+
+
+// from second terminal ( console ) 
+
+> const signers = await ethers.getSigners();
+undefined
+> const bal = await ethers.provider.getBalance(signers[0])
+undefined
+> const contract2 =  await ethers.getContractFactory("Check")
+undefined
+> const deployedContract  = await contract2.deploy()
+undefined
+>
+> await deployedContract.check("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+0n
+> var options = { gasPrice: 1000000000, gasLimit: 85000, nonce: 45, value: 0 };
+undefined
+> const sendValueHuman = "3.0";
+undefined
+>
+> const  myAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+undefined
+>  const txBuild = {
+...   from: myAddress, // from,
+...   to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+...   value: ethers.parseEther(sendValueHuman), // value,
+...   nonce: 678, // nonce,
+...   gasLimit: 100000, // gas limit,
+...   gasPrice: 8032069038,   // gasPrice, // gas price
+...    };
+>
+
+
+> const [deployer] = await ethers.getSigners();
+const deployedContract  = await contract2.deploy()
+ await deployedContract.check("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+ await ethers.provider.getBalance(myAddress)
+
+
+
+
+
+
+
+
+https://www.reddit.com/r/HEXcrypto/comments/1au5rvk/metamask_is_confusing/
