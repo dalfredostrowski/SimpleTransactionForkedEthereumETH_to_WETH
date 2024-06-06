@@ -27,7 +27,7 @@
 
 
 // from second terminal ( console ) 
-const [deployer] = await ethers.getSigners();
+> const [deployer] = await ethers.getSigners();
 > const signers = await ethers.getSigners();
 undefined
 > const bal = await ethers.provider.getBalance(signers[0])
@@ -47,13 +47,9 @@ undefined
 > const  myAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 undefined
 
-> const [deployer] = await ethers.getSigners();
-const deployedContract  = await contract2.deploy()
- await deployedContract.check("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
- await ethers.provider.getBalance(myAddress)
-
 > const myGasPrice = (await ethers.provider.getFeeData()).gasPrice
 undefined
+
 > myGasPrice
 23350926408n
 
