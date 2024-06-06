@@ -46,16 +46,6 @@ undefined
 >
 > const  myAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 undefined
->  const txBuild = {
-...   from: myAddress, // from,
-...   to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-...   value: ethers.parseEther(sendValueHuman), // value,
-...   nonce: 678, // nonce,
-...   gasLimit: 100000, // gas limit,
-...   gasPrice: 8032069038,   // gasPrice, // gas price
-...    };
->
-
 
 > const [deployer] = await ethers.getSigners();
 const deployedContract  = await contract2.deploy()
@@ -67,13 +57,32 @@ undefined
 > myGasPrice
 23350926408n
 
-> await ethers.provider.getTransactionCount(myAddress)
-677 // nonce
+> const nonce = await ethers.provider.getTransactionCount(myAddress)
+// nonce will change every single time! 
+
+>  const txBuild = {
+...   from: myAddress, // from,
+...   to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+...   value: ethers.parseEther(sendValueHuman), // value,
+...   nonce: nonce2, // nonce,
+...   gasLimit: 100000, // gas limit,
+...   gasPrice: myGasPrice,   // gasPrice, // gas price
+...  };
+undefined
+> const txSend   = await deployer.sendTransaction(txBuild);
+undefined
+> const bal2 = await ethers.provider.getBalance(signers[0])
+undefined
+> bal2
+9996995102460488587704n
+> await deployedContract.check("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+3000000000000000000n
 >
 
->  const txSend6   = await deployer.sendTransaction(txBuild6);
 
 
+ await deployedContract.check("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+ await ethers.provider.getBalance(myAddress
 https://github.com/ethers-io/ethers.js/discussions/4219
 
 
